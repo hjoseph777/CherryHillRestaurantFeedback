@@ -1,112 +1,244 @@
-import { Image } from 'expo-image';
-import { Platform, StyleSheet } from 'react-native';
+import { router } from 'expo-router';
+import { StyleSheet, TouchableOpacity } from 'react-native';
 
-import { Collapsible } from '@/components/ui/collapsible';
-import { ExternalLink } from '@/components/external-link';
 import ParallaxScrollView from '@/components/parallax-scroll-view';
 import { ThemedText } from '@/components/themed-text';
 import { ThemedView } from '@/components/themed-view';
 import { IconSymbol } from '@/components/ui/icon-symbol';
 import { Fonts } from '@/constants/theme';
 
-export default function TabTwoScreen() {
+// Restaurant feedback system documentation and resources
+export default function ExploreScreen() {
+  const handleReturnToMain = () => {
+    router.push('/');
+  };
+
   return (
     <ParallaxScrollView
-      headerBackgroundColor={{ light: '#D0D0D0', dark: '#353636' }}
+      headerBackgroundColor={{ light: '#2D5D31', dark: '#1B3B1E' }}
       headerImage={
         <IconSymbol
           size={310}
-          color="#808080"
-          name="chevron.left.forwardslash.chevron.right"
+          color="#4CAF50"
+          name="book.pages"
           style={styles.headerImage}
         />
       }>
-      <ThemedView style={styles.titleContainer}>
-        <ThemedText
-          type="title"
-          style={{
-            fontFamily: Fonts.rounded,
-          }}>
-          Explore
-        </ThemedText>
+      
+      {/* Header with return button */}
+      <ThemedView style={styles.headerContainer}>
+        <ThemedView style={styles.titleContainer}>
+          <ThemedText
+            type="title"
+            style={{
+              fontFamily: Fonts.rounded,
+              color: '#2D5D31',
+            }}>
+            Restaurant Resources
+          </ThemedText>
+        </ThemedView>
+        
+        <TouchableOpacity 
+          style={styles.returnButton}
+          onPress={handleReturnToMain}
+        >
+          <ThemedText style={styles.returnButtonText}>
+            ← Back to Dashboard
+          </ThemedText>
+        </TouchableOpacity>
       </ThemedView>
-      <ThemedText>This app includes example code to help you get started.</ThemedText>
-      <Collapsible title="File-based routing">
-        <ThemedText>
-          This app has two screens:{' '}
-          <ThemedText type="defaultSemiBold">app/(tabs)/index.tsx</ThemedText> and{' '}
-          <ThemedText type="defaultSemiBold">app/(tabs)/explore.tsx</ThemedText>
-        </ThemedText>
-        <ThemedText>
-          The layout file in <ThemedText type="defaultSemiBold">app/(tabs)/_layout.tsx</ThemedText>{' '}
-          sets up the tab navigator.
-        </ThemedText>
-        <ExternalLink href="https://docs.expo.dev/router/introduction">
-          <ThemedText type="link">Learn more</ThemedText>
-        </ExternalLink>
-      </Collapsible>
-      <Collapsible title="Android, iOS, and web support">
-        <ThemedText>
-          You can open this project on Android, iOS, and the web. To open the web version, press{' '}
-          <ThemedText type="defaultSemiBold">w</ThemedText> in the terminal running this project.
-        </ThemedText>
-      </Collapsible>
-      <Collapsible title="Images">
-        <ThemedText>
-          For static images, you can use the <ThemedText type="defaultSemiBold">@2x</ThemedText> and{' '}
-          <ThemedText type="defaultSemiBold">@3x</ThemedText> suffixes to provide files for
-          different screen densities
-        </ThemedText>
-        <Image
-          source={require('@/assets/images/react-logo.png')}
-          style={{ width: 100, height: 100, alignSelf: 'center' }}
-        />
-        <ExternalLink href="https://reactnative.dev/docs/images">
-          <ThemedText type="link">Learn more</ThemedText>
-        </ExternalLink>
-      </Collapsible>
-      <Collapsible title="Light and dark mode components">
-        <ThemedText>
-          This template has light and dark mode support. The{' '}
-          <ThemedText type="defaultSemiBold">useColorScheme()</ThemedText> hook lets you inspect
-          what the user&apos;s current color scheme is, and so you can adjust UI colors accordingly.
-        </ThemedText>
-        <ExternalLink href="https://docs.expo.dev/develop/user-interface/color-themes/">
-          <ThemedText type="link">Learn more</ThemedText>
-        </ExternalLink>
-      </Collapsible>
-      <Collapsible title="Animations">
-        <ThemedText>
-          This template includes an example of an animated component. The{' '}
-          <ThemedText type="defaultSemiBold">components/HelloWave.tsx</ThemedText> component uses
-          the powerful{' '}
-          <ThemedText type="defaultSemiBold" style={{ fontFamily: Fonts.mono }}>
-            react-native-reanimated
-          </ThemedText>{' '}
-          library to create a waving hand animation.
-        </ThemedText>
-        {Platform.select({
-          ios: (
-            <ThemedText>
-              The <ThemedText type="defaultSemiBold">components/ParallaxScrollView.tsx</ThemedText>{' '}
-              component provides a parallax effect for the header image.
-            </ThemedText>
-          ),
-        })}
-      </Collapsible>
+
+      <ThemedText style={styles.description}>
+        Quick access to your restaurant management demos and features.
+      </ThemedText>
+
+      {/* Navigation cards to different pages */}
+      <ThemedView style={styles.navigationSection}>
+        <ThemedText style={styles.sectionTitle}>Demo Pages</ThemedText>
+        
+        {/* Produce Report Link */}
+        <TouchableOpacity 
+          style={styles.navCard}
+          onPress={() => router.push('/inventory-success')}
+        >
+          <ThemedView style={styles.cardContent}>
+            <ThemedText style={styles.cardIcon}>🍃</ThemedText>
+            <ThemedView style={styles.cardText}>
+              <ThemedText style={styles.cardTitle}>Daily Produce Report</ThemedText>
+              <ThemedText style={styles.cardDescription}>View inventory success feedback</ThemedText>
+            </ThemedView>
+            <ThemedText style={styles.cardArrow}>→</ThemedText>
+          </ThemedView>
+        </TouchableOpacity>
+
+        {/* Payroll Processing Link */}
+        <TouchableOpacity 
+          style={styles.navCard}
+          onPress={() => router.push('/payroll-guidance')}
+        >
+          <ThemedView style={styles.cardContent}>
+            <ThemedText style={styles.cardIcon}>💼</ThemedText>
+            <ThemedView style={styles.cardText}>
+              <ThemedText style={styles.cardTitle}>Payroll Processing</ThemedText>
+              <ThemedText style={styles.cardDescription}>Process payroll with guidance</ThemedText>
+            </ThemedView>
+            <ThemedText style={styles.cardArrow}>→</ThemedText>
+          </ThemedView>
+        </TouchableOpacity>
+
+        {/* Interactive Feedback Link */}
+        <TouchableOpacity 
+          style={styles.navCard}
+          onPress={() => router.push('/feedback-demo')}
+        >
+          <ThemedView style={styles.cardContent}>
+            <ThemedText style={styles.cardIcon}>⚡</ThemedText>
+            <ThemedView style={styles.cardText}>
+              <ThemedText style={styles.cardTitle}>Interactive Feedback Demo</ThemedText>
+              <ThemedText style={styles.cardDescription}>Test all feedback types</ThemedText>
+            </ThemedView>
+            <ThemedText style={styles.cardArrow}>→</ThemedText>
+          </ThemedView>
+        </TouchableOpacity>
+      </ThemedView>
+
+      {/* Bottom return button for convenience */}
+      <ThemedView style={styles.bottomButtonContainer}>
+        <TouchableOpacity 
+          style={styles.bottomReturnButton}
+          onPress={handleReturnToMain}
+        >
+          <ThemedText style={styles.bottomReturnButtonText}>
+            Return to Main Dashboard
+          </ThemedText>
+        </TouchableOpacity>
+      </ThemedView>
     </ParallaxScrollView>
   );
 }
 
 const styles = StyleSheet.create({
   headerImage: {
-    color: '#808080',
+    color: '#4CAF50',
     bottom: -90,
     left: -35,
     position: 'absolute',
   },
+  headerContainer: {
+    marginBottom: 20,
+  },
   titleContainer: {
     flexDirection: 'row',
     gap: 8,
+    marginBottom: 16,
+  },
+  description: {
+    fontSize: 16,
+    lineHeight: 24,
+    marginBottom: 24,
+    opacity: 0.8,
+  },
+  // Navigation section
+  navigationSection: {
+    marginBottom: 32,
+  },
+  sectionTitle: {
+    fontSize: 20,
+    fontWeight: '700',
+    marginBottom: 16,
+    color: '#2D5D31',
+  },
+  // Navigation cards
+  navCard: {
+    backgroundColor: 'white',
+    borderRadius: 12,
+    marginBottom: 16,
+    shadowColor: '#000',
+    shadowOffset: { width: 0, height: 2 },
+    shadowOpacity: 0.1,
+    shadowRadius: 8,
+    elevation: 4,
+    borderLeftWidth: 4,
+    borderLeftColor: '#4CAF50',
+  },
+  cardContent: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    padding: 20,
+  },
+  cardIcon: {
+    fontSize: 24,
+    marginRight: 16,
+  },
+  cardText: {
+    flex: 1,
+  },
+  cardTitle: {
+    fontSize: 16,
+    fontWeight: '600',
+    color: '#333',
+    marginBottom: 4,
+  },
+  cardDescription: {
+    fontSize: 14,
+    color: '#666',
+    opacity: 0.8,
+  },
+  cardArrow: {
+    fontSize: 18,
+    color: '#4CAF50',
+    fontWeight: 'bold',
+  },
+  // Return to main button - top
+  returnButton: {
+    backgroundColor: '#4CAF50',
+    paddingHorizontal: 16,
+    paddingVertical: 8,
+    borderRadius: 8,
+    alignSelf: 'flex-start',
+  },
+  returnButtonText: {
+    color: 'white',
+    fontSize: 14,
+    fontWeight: '600',
+  },
+  // Content styling
+  bulletPoint: {
+    fontSize: 14,
+    lineHeight: 20,
+    marginLeft: 8,
+    marginVertical: 2,
+  },
+  note: {
+    fontSize: 14,
+    fontStyle: 'italic',
+    opacity: 0.7,
+    marginTop: 8,
+    paddingLeft: 8,
+    borderLeftWidth: 2,
+    borderLeftColor: '#4CAF50',
+  },
+  // Bottom return button
+  bottomButtonContainer: {
+    marginTop: 32,
+    marginBottom: 20,
+    alignItems: 'center',
+  },
+  bottomReturnButton: {
+    backgroundColor: '#2D5D31',
+    paddingHorizontal: 32,
+    paddingVertical: 16,
+    borderRadius: 12,
+    shadowColor: '#000',
+    shadowOffset: { width: 0, height: 2 },
+    shadowOpacity: 0.1,
+    shadowRadius: 4,
+    elevation: 3,
+  },
+  bottomReturnButtonText: {
+    color: 'white',
+    fontSize: 16,
+    fontWeight: '600',
+    textAlign: 'center',
   },
 });

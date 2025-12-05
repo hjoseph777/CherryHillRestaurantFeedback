@@ -1,98 +1,244 @@
-import { Image } from 'expo-image';
-import { Platform, StyleSheet } from 'react-native';
+import { StyleSheet, View } from 'react-native';
 
-import { HelloWave } from '@/components/hello-wave';
 import ParallaxScrollView from '@/components/parallax-scroll-view';
 import { ThemedText } from '@/components/themed-text';
 import { ThemedView } from '@/components/themed-view';
 import { Link } from 'expo-router';
 
+// Main dashboard for Josh & Colleen's restaurant feedback system
 export default function HomeScreen() {
+  // console.log('HomeScreen rendered'); // TODO: remove this later
+  
   return (
     <ParallaxScrollView
-      headerBackgroundColor={{ light: '#A1CEDC', dark: '#1D3D47' }}
+      headerBackgroundColor={{ light: '#2D5D31', dark: '#1B3B1E' }}
       headerImage={
-        <Image
-          source={require('@/assets/images/partial-react-logo.png')}
-          style={styles.reactLogo}
-        />
+        <ThemedView style={styles.headerContent}>
+          <ThemedText style={styles.restaurantName}>Cherry Hill</ThemedText>
+          <ThemedText style={styles.tagline}>Farm to Table Excellence</ThemedText>
+        </ThemedView>
       }>
-      <ThemedView style={styles.titleContainer}>
-        <ThemedText type="title">Welcome!</ThemedText>
-        <HelloWave />
-      </ThemedView>
-      <ThemedView style={styles.stepContainer}>
-        <ThemedText type="subtitle">Step 1: Try it</ThemedText>
-        <ThemedText>
-          Edit <ThemedText type="defaultSemiBold">app/(tabs)/index.tsx</ThemedText> to see changes.
-          Press{' '}
-          <ThemedText type="defaultSemiBold">
-            {Platform.select({
-              ios: 'cmd + d',
-              android: 'cmd + m',
-              web: 'F12',
-            })}
-          </ThemedText>{' '}
-          to open developer tools.
+      
+      {/* Personalized greeting - makes them feel at home */}
+      <ThemedView style={styles.welcomeContainer}>
+        <ThemedText type="title" style={styles.welcomeTitle}>
+          Welcome Back, Josh & Colleen! 👨‍🍳👩‍🍳
+        </ThemedText>
+        <ThemedText style={styles.welcomeSubtext}>
+          Manage your restaurant feedback systems across Philadelphia and NYC locations
         </ThemedText>
       </ThemedView>
-      <ThemedView style={styles.stepContainer}>
-        <Link href="/modal">
-          <Link.Trigger>
-            <ThemedText type="subtitle">Step 2: Explore</ThemedText>
-          </Link.Trigger>
-          <Link.Preview />
-          <Link.Menu>
-            <Link.MenuAction title="Action" icon="cube" onPress={() => alert('Action pressed')} />
-            <Link.MenuAction
-              title="Share"
-              icon="square.and.arrow.up"
-              onPress={() => alert('Share pressed')}
-            />
-            <Link.Menu title="More" icon="ellipsis">
-              <Link.MenuAction
-                title="Delete"
-                icon="trash"
-                destructive
-                onPress={() => alert('Delete pressed')}
-              />
-            </Link.Menu>
-          </Link.Menu>
-        </Link>
 
-        <ThemedText>
-          {`Tap the Explore tab to learn more about what's included in this starter app.`}
+      {/* Core demo section - this is where the magic happens */}
+      <ThemedView style={styles.demosSection}>
+        <ThemedText type="subtitle" style={styles.demosTitle}>
+          System Feedback Demonstrations
         </ThemedText>
-      </ThemedView>
-      <ThemedView style={styles.stepContainer}>
-        <ThemedText type="subtitle">Step 3: Get a fresh start</ThemedText>
-        <ThemedText>
-          {`When you're ready, run `}
-          <ThemedText type="defaultSemiBold">npm run reset-project</ThemedText> to get a fresh{' '}
-          <ThemedText type="defaultSemiBold">app</ThemedText> directory. This will move the current{' '}
-          <ThemedText type="defaultSemiBold">app</ThemedText> to{' '}
-          <ThemedText type="defaultSemiBold">app-example</ThemedText>.
+        <ThemedText style={styles.demosDescription}>
+          Experience how clear feedback improves restaurant operations
         </ThemedText>
+        
+        <View style={styles.demoCardsContainer}>
+          <Link href="/inventory-success" style={styles.demoLink}>
+            <ThemedView style={[styles.demoCard, styles.inventoryCard]}>
+              <View style={styles.cardHeader}>
+                <View style={styles.iconContainer}>
+                  <ThemedText style={styles.cardIcon}>🥬</ThemedText>
+                </View>
+                <View style={styles.cardContent}>
+                  <ThemedText style={styles.cardTitle}>Daily Produce Report</ThemedText>
+                  <ThemedText style={styles.cardDescription}>
+                    See how success feedback confirms inventory updates reach your chefs
+                  </ThemedText>
+                </View>
+              </View>
+              <View style={styles.cardFooter}>
+                <ThemedText style={styles.cardAction}>Try Demo →</ThemedText>
+              </View>
+            </ThemedView>
+          </Link>
+
+          <Link href="/payroll-guidance" style={styles.demoLink}>
+            <ThemedView style={[styles.demoCard, styles.payrollCard]}>
+              <View style={styles.cardHeader}>
+                <View style={styles.iconContainer}>
+                  <ThemedText style={styles.cardIcon}>💰</ThemedText>
+                </View>
+                <View style={styles.cardContent}>
+                  <ThemedText style={styles.cardTitle}>Payroll Navigation</ThemedText>
+                  <ThemedText style={styles.cardDescription}>
+                    Learn how guidance messages help you find detailed audit information
+                  </ThemedText>
+                </View>
+              </View>
+              <View style={styles.cardFooter}>
+                <ThemedText style={styles.cardAction}>Try Demo →</ThemedText>
+              </View>
+            </ThemedView>
+          </Link>
+
+          <Link href="/feedback-demo" style={styles.demoLink}>
+            <ThemedView style={[styles.demoCard, styles.interactiveCard]}>
+              <View style={styles.cardHeader}>
+                <View style={styles.iconContainer}>
+                  <ThemedText style={styles.cardIcon}>⚡</ThemedText>
+                </View>
+                <View style={styles.cardContent}>
+                  <ThemedText style={styles.cardTitle}>Interactive Feedback</ThemedText>
+                  <ThemedText style={styles.cardDescription}>
+                    Test all three types: Success, Error, and Loading messages
+                  </ThemedText>
+                </View>
+              </View>
+              <View style={styles.cardFooter}>
+                <ThemedText style={styles.cardAction}>Try Demo →</ThemedText>
+              </View>
+            </ThemedView>
+          </Link>
+        </View>
       </ThemedView>
     </ParallaxScrollView>
   );
 }
 
 const styles = StyleSheet.create({
-  titleContainer: {
-    flexDirection: 'row',
+  // Header branding - kept it simple but effective
+  headerContent: {
+    flex: 1,
+    justifyContent: 'center',
     alignItems: 'center',
-    gap: 8,
+    paddingHorizontal: 20,
   },
-  stepContainer: {
-    gap: 8,
+  restaurantName: {
+    fontSize: 32,
+    fontWeight: 'bold',
+    color: 'white',
+    textAlign: 'center',
     marginBottom: 8,
   },
-  reactLogo: {
-    height: 178,
-    width: 290,
-    bottom: 0,
-    left: 0,
-    position: 'absolute',
+  tagline: {
+    fontSize: 16,
+    color: '#E8F5E8',
+    textAlign: 'center',
+    fontStyle: 'italic',
+  },
+  
+  // Welcome section - trying to make it feel personal
+  welcomeContainer: {
+    padding: 20,
+    backgroundColor: '#F8FDF8',
+    borderRadius: 16,
+    marginBottom: 24,
+    borderLeftWidth: 6,
+    borderLeftColor: '#4CAF50',
+    marginTop: -10, // pulled it up a bit
+  },
+  welcomeTitle: {
+    fontSize: 24,
+    fontWeight: 'bold',
+    marginBottom: 8,
+    color: '#2D5D31',
+    textAlign: 'center',
+  },
+  welcomeSubtext: {
+    fontSize: 16,
+    color: '#666',
+    lineHeight: 22,
+    textAlign: 'center',
+  },
+
+  // Demos section - main educational content
+  demosSection: {
+    marginBottom: 24,
+  },
+  demosTitle: {
+    fontSize: 22,
+    fontWeight: '700',
+    marginBottom: 8,
+    color: '#333',
+  },
+  demosDescription: {
+    fontSize: 16,
+    color: '#666',
+    marginBottom: 20,
+    lineHeight: 22,
+  },
+  
+  // Demo cards - spent way too much time on these shadows
+  demoCardsContainer: {
+    gap: 16,
+  },
+  demoLink: {
+    textDecorationLine: 'none',
+  },
+  demoCard: {
+    backgroundColor: 'white',
+    borderRadius: 16,
+    padding: 20,
+    shadowColor: '#000',
+    shadowOffset: { width: 0, height: 2 },
+    shadowOpacity: 0.1,
+    shadowRadius: 8,
+    elevation: 4,
+    borderWidth: 1,
+    borderColor: '#F0F0F0',
+  },
+  
+  // Different colors for each card type
+  inventoryCard: {
+    borderLeftWidth: 6,
+    borderLeftColor: '#4CAF50',
+    backgroundColor: '#FAFFFA',
+  },
+  payrollCard: {
+    borderLeftWidth: 6,
+    borderLeftColor: '#2196F3', 
+    backgroundColor: '#F8FCFF',
+  },
+  interactiveCard: {
+    borderLeftWidth: 6,
+    borderLeftColor: '#FF9800',
+    backgroundColor: '#FFFAF5',
+  },
+
+  // Card layout
+  cardHeader: {
+    flexDirection: 'row',
+    marginBottom: 16,
+  },
+  iconContainer: {
+    width: 50,
+    height: 50,
+    backgroundColor: '#F5F5F5',
+    borderRadius: 25,
+    justifyContent: 'center',
+    alignItems: 'center',
+    marginRight: 16,
+  },
+  cardIcon: {
+    fontSize: 24,
+  },
+  cardContent: {
+    flex: 1,
+    justifyContent: 'center',
+  },
+  cardTitle: {
+    fontSize: 18,
+    fontWeight: '600',
+    marginBottom: 6,
+    color: '#333',
+  },
+  cardDescription: {
+    fontSize: 14,
+    color: '#666',
+    lineHeight: 20,
+  },
+  cardFooter: {
+    alignItems: 'flex-end',
+  },
+  cardAction: {
+    fontSize: 14,
+    color: '#2196F3',
+    fontWeight: '600',
   },
 });
