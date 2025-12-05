@@ -1,7 +1,8 @@
 # Cherry Hill Restaurant Feedback System
 
-## Project Metadata
-- Author: Cross Platform Mobile Development
+## Project Details
+- Author: Harry Joseph
+- Course: System Design CPAN 209
 - Created: 2025-12-05
 - Platform: Expo (React Native + TypeScript + Expo Router)
 - Package Manager: npm
@@ -9,7 +10,7 @@
 - Routing: File‑based via `expo-router`
 
 ## Overview
-Cherry Hill Restaurant Feedback System demonstrates essential feedback patterns in restaurant management applications. The project showcases success confirmation, error handling, and loading states across multiple restaurant locations in Philadelphia and NYC, featuring farm-to-table inventory tracking and payroll processing workflows.
+Cherry Hill Restaurant Feedback System is a purpose-built UI/UX demo for Lab #10 All About System Feedback for restaurant owners Josh and Colleen. Action Confirmation, Input Error Messaging, and “Please Wait” Loading States The project Chairs to go farming (Philadelphia/NYC) introduces three main feedback states within their farm to table operation in both Philadelphia and New York City. This system models user interactions for daily produce inventory reporting and payroll software assistance, focusing on clear communication, interactivity and user-first design over full backend implementation, and is presented as a mobile interface via Expo Router. 
 
 ## Quick Download
 
