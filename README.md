@@ -16,7 +16,7 @@ Cherry Hill Restaurant Feedback System is a purpose-built UI/UX demo for Lab #10
 
 **Get the complete project instantly:**
 
-[![Download CherryHillRestaurantFeedback](https://img.shields.io/badge/Download-CherryHillRestaurantFeedback.zip-blue?style=for-the-badge&logo=download)](https://github.com/hjoseph777/CherryHillRestaurantFeedback/releases/download/v1.0/CherryHillRestaurantFeedback.zip)
+[![Download CherryHillRestaurantFeedback](https://img.shields.io/badge/Download-CherryHillRestaurantFeedback.zip-blue?style=for-the-badge&logo=download)](https://github.com/hjoseph777/CherryHillRestaurantFeedback/releases/download/v1/CherryHillRestaurantFeedback.zip)
 
 ## Live Demo
 [![Live Demo](https://img.shields.io/badge/Live%20Demo-Vercel-000000?style=for-the-badge&logo=vercel&logoColor=white)](https://cherry-hill-restaurant-feedback.vercel.app)
